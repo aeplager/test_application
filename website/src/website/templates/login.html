@@ -1,0 +1,93 @@
+{% extends "baselayout.html" %} 
+{% block title %}Login{% endblock %} 
+{% block init_scripts %}   
+<script type="text/javascript" src="{{ url_for('static', filename='js/VRD/useradmin.js') }}"></script>
+<script>
+   function initialize(){
+        try{     
+          // Discover Login Status
+          var urlMain = 'api_general/ret_logged_in';
+          var ResultData = general_return_json_api(urlMain);          
+          if ((ResultData.Status=="SUCCESS") && (ResultData.LoginStatus=="TRUE")) {
+              alertify.success("Welcome to The VRD System.  Please proceed to the WholeSale Deal Screen");
+          } else {
+            alertify.success("Welcome to The VRD System.  Please Login to the Application");
+          }
+          
+          } catch (e) {
+            e= 'You received an error on startup:  ' + e;
+            general_error(e);
+        }
+    }
+</script>
+{% endblock %} 
+{% block content%}
+<div class="sub-nav hidden-sm hidden-xs">
+    <ul>
+        <li><a href="" class="heading">Login Screen</a></li>  <!--Main Form for Data Entry-->
+        <li class="hidden-sm hidden-xs">
+            <a href="#RemoveAbleDiv_Cust"></a>
+        </li>
+        <li class="hidden-sm hidden-xs">
+            <a href="#"></a>
+        </li>
+        <!--<li class="hidden-sm hidden-xs">
+            <a href="#inputs">Status of Upload</a>
+        </li>-->
+    </ul>
+    <div class="custom-search hidden-sm hidden-xs">
+        <input type="text" class="search-query" placeholder="Search here ...">
+        <i class="fa fa-search"></i>
+    </div>
+</div>
+<div class="dashboard-wrapper"  style="height: 3000px;">
+        <div class="left-sidebar">
+            <div class="col-lg-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header">
+                        <div class="title">
+                            Login Screen
+                            <span class="mini-title">
+                                Enter Deals<a id="enter-deal-single"></a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="widget-body">                                            
+                        <div class="row">
+                          <form method="POST">
+                            <h3 align="center">Login</h3>
+                            <div class="form-group">
+                              <label for="email">Email Address</label>
+                              <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                placeholder="Enter email"
+                              />
+                            </div>
+                            <div class="form-group">
+                              <label for="password">Password</label>
+                              <input
+                                type="password"
+                                class="form-control"
+                                id="password"
+                                name="password"
+                                placeholder="Enter password"
+                              />
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="button" class="btn btn-info" onclick="passwordresetandsendemailvalidate()">Reset Password</button>
+                          </form>                        
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+
+{% endblock %}

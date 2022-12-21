@@ -1,0 +1,10 @@
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+/website/src/Lib
+/website/src/Include
+/website/src/instance
+/website/src/Scripts
+/website/src/website/__pycache__

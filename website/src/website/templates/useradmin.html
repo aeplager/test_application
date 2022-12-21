@@ -1,0 +1,116 @@
+{% extends "baselayout.html" %}
+{% block title %}
+    User Management
+{% endblock %}
+
+{% block init_scripts %}            
+<script type="text/javascript" src="{{ url_for('static', filename='js/VRD/useradmin.js') }}"></script>
+<script>
+    function initialize(){
+        try{
+            // Initialize all values            
+            urlMain = '/api_usermgt/useraccount'                          
+            general_fill_selector('selUserEmail',urlMain,'User Accounts');
+            urlMain = '/api_usermgt/useraccounttypes'
+            general_fill_selector('selUserType',urlMain,'User Types');
+        }catch (e) {
+            e= 'You received an error on startup:  ' + e;
+            general_error(e);
+        }
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+    <div class="sub-nav hidden-sm hidden-xs">
+        <ul>
+            <li><a href="" class="heading">User Admin Screen</a></li>  <!--Main Form for Data Entry-->
+            <li class="hidden-sm hidden-xs">
+                <a href="#RemoveAbleDiv_Cust"></a>
+            </li>
+            <li class="hidden-sm hidden-xs">
+                <a href="#"></a>
+            </li>
+            <!--<li class="hidden-sm hidden-xs">
+                <a href="#inputs">Status of Upload</a>
+            </li>-->
+        </ul>
+        <div class="custom-search hidden-sm hidden-xs">
+            <input type="text" class="search-query" placeholder="Search here ...">
+            <i class="fa fa-search"></i>
+        </div>
+    </div>
+    <div class="dashboard-wrapper">
+        <div class="left-sidebar">
+            <div class="col-lg-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header">
+                        <div class="title">
+                            User Administration
+                            <span class="mini-title">
+                                Enter Users<a id="enter-deal-single"></a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="widget-body">                                            
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-3">
+                                    <label for="DealListLabel" class="col-sm-4 control-label">Select User</label>                                
+                                    <select id="selUserEmail" name="DealInfoList_Deal_name" class="form-control" onchange="useradmin_user_select()">
+                                        <option>-User Email-</option>
+                                    </select>                                    
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="userName" class="col-sm-4 control-label">User Email</label>                                    
+                                    <input type="text" class="form-control" id="txtUserEmail" placeholder="-User Email-">                                    
+                                </div>     
+                                <div class="col-sm-3">
+                                    <label for="userName" class="col-sm-4 control-label">User Level/Type</label>                                    
+                                    <select id="selUserType" name="DealInfoList_Deal_name" class="form-control" >
+                                        <option>-User Type-</option>
+                                    </select>                                           
+                                </div>                                                                                        
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-sm-6">
+                                    <label for="userName" class="col-sm-4 control-label">First Name</label>                                    
+                                    <input type="text" class="form-control" id="admin_firstname" placeholder="-First Name-">                                    
+                                </div>                        
+                                <div class="col-sm-6">
+                                    <label for="userName" class="col-sm-4 control-label">Last Name</label>                                    
+                                    <input type="text" class="form-control" id="admin_lastname" placeholder="-First Name-">                                    
+                                </div>      
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-8">                                    
+                                <div>
+                                    <input id="UserMgtActive" type='checkbox' checked><label for="pwd" class="col-sm-2 control-label">Active</label>                                                                           
+                                </div>
+                                </br>
+                                <div>
+                                    <input id="UserMgtPasswordReset" type='checkbox' checked><label for="pwd" class="col-sm-2 control-label">Password Reset</label>
+                                </div>
+                                </br>
+                                <div>
+                                    <input id="UserMgtSuperUser" type='checkbox' checked><label for="pwd" class="col-sm-2 control-label">Super User</label>
+                                </div>
+                            </div>   
+                        </div>
+                        <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6">                                    
+                                        <button type="button" class="btn btn-default btn" onclick="useradmin_user_base()">New</button>
+                                        <button type="button" class="btn btn-info" onclick="useradmin_user_update()">Save</button>
+                                    </div>
+                                </div>                                                        
+                            </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}    

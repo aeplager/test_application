@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}{% endblock %}</title>                
+        <link rel="icon" href="{{ url_for('static', filename='img/LogoHeader.png')}}" type="image/x-icon" />
+        <!--CSS Files-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/wysi/bootstrap-wysihtml5.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/alertify.min.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/alertify.core.css') }}" id="toggleCSS"s />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/new.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/color-picker/jquery.minicolors.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}"  />
+        <!--AutoComplete New-->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/hot-sneaks/jquery-ui.css" />
+
+       <!--Java Scripts-->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/alertify.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/alertify.min.js') }}"></script>
+
+        <!--Data Table -->
+        <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+        <!--Jquery Java Scripts -->
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/jquery-1.7.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.7.0/jquery-ui.js"></script>
+        
+        <script src="http://code.jquery.com/jquery-2.1.3.js"></script>  
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!--Data Table Scripts-->
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        
+        <!--Azure Blob-->
+        <script type="text/javascript" src="{{ url_for('static', filename='Azure/azure-storage.blob.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='Azure/AzureGeneral.js') }}"></script>
+        
+        <!--General Scripts for VRD -->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/VRD/wholesaledeal.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/VRD/general.js') }}"></script>
+
+    <script type="text/javascript">
+        //override defaults
+        alertify.defaults.transition = "slide";
+        alertify.defaults.theme.ok = "btn btn-primary";
+        alertify.defaults.theme.cancel = "btn btn-danger";
+        alertify.defaults.theme.input = "form-control";
+    </script>
+    
+    <script>       
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-40304444-1', 'iamsrinu.com');
+        ga('send', 'pageview');
+
+    </script>
+    </head>
+    <body>   
+        <div id='cssmenu'>
+                <ul>
+                    <li class=''>
+                        <a href='#'>
+                            <i class="fa fa-dashboard"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class='active'>
+                        <a href="">
+                            <i class="fa fa-align-justify"></i>
+                            Data Entry
+                        </a>
+                        <ul>
+                            <li><a href="{{ url_for('wholesaledeal') }}" class="navbar-item">Wholesale Deal Entry</a></li>
+                            <li><a href="{{ url_for('home') }}" class="navbar-item">Home</a></li>
+                            <li><a href="{{ url_for('about') }}" class="navbar-item">About</a>></li>
+                            <li><a href="{{ url_for('contact') }}" class="navbar-item">Contact</a></li>                           
+                            <li><a href='RetailDeals.html'>Retail Deal Entry</a></li>
+                            <li><a href='WholesaleDeals.html'>Wholesale Deal Entry</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-bar-chart-o"></i>
+                            Graphing
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="">Monthly</a>
+                                <ul>
+                                    <li><a onclick="vrd_graphing_tab_select('MonthlyPricing')">Monthly Pricing</a></li>
+                                    <li><a onclick="vrd_graphing_tab_select('HourlyShapes')">Hourly Shapes</a></li>
+                                    <li><a onclick="vrd_graphing_tab_select('RetailRisk')">Retail Risk</a></li>
+                                    <li><a onclick="vrd_graphing_tab_select('PeakModel')">Peak Model</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">Pricing</a>
+                                <ul>
+                                    <li><a onclick="vrd_graphing_tab_select('PricingSummary')">Pricing Summary</a></li>
+                                    <li><a onclick="vrd_graphing_tab_select('MonthlyPrices')">Monthly Prices</a></li>
+                                    <li><a onclick="vrd_graphing_tab_select('PriceComparison')">Price Comparison</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>     
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/wysi/wysihtml5-0.3.0.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/wysi/bootstrap3-wysihtml5.js') }}"></script>
+
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.scrollUp.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/menu.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/color-picker/jquery.minicolors.js') }}"></script>
+    
+        <script type="text/javascript">
+            //ScrollUp
+            $(function () {
+                $.scrollUp({
+                    scrollName: 'scrollUp', // Element ID
+                    topDistance: '300', // Distance from top before showing element (px)
+                    topSpeed: 300, // Speed back to top (ms)
+                    animation: 'fade', // Fade, slide, none
+                    animationInSpeed: 400, // Animation in speed (ms)
+                    animationOutSpeed: 400, // Animation out speed (ms)
+                    scrollText: 'Top', // Text for element
+                    activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+                });
+            });
+
+            //Tooltip
+            $('a').tooltip('hide');
+
+            //Popover
+            $('.popover-pop').popover('hide');
+
+            //Dropdown
+            $('.dropdown-toggle').dropdown();
+
+            //wysihtml5
+            //$('.textarea').wysihtml5();
+
+            //Color Pickers
+            $(document).ready(function () {
+
+                $('.demo').each(function () {
+                    $(this).minicolors({
+                        control: $(this).attr('data-control') || 'hue',
+                        defaultValue: $(this).attr('data-defaultValue') || '',
+                        inline: $(this).attr('data-inline') === 'true',
+                        letterCase: $(this).attr('data-letterCase') || 'lowercase',
+                        opacity: $(this).attr('data-opacity'),
+                        position: $(this).attr('data-position') || 'bottom left',
+                        change: function (hex, opacity) {
+                            if (!hex) return;
+                            if (opacity) hex += ', ' + opacity;
+                            try {
+                                console.log(hex);
+                            } catch (e) { }
+                        },
+                        theme: 'bootstrap'
+                    });
+
+                });
+
+            });
+                ////Data Tables
+                //$(document).ready(function () {
+                //    $('#data-table').dataTable({
+                //        "sPaginationType": "full_numbers"
+                //    });
+                //});
+
+        </script>
+        <div class="row">
+            <div class="body-content">
+                {% block content %}
+                {% endblock %}
+                
+                <hr/>       
+            </div>
+        </div> 
+    </body>    
+    <footer>
+        @2021
+    </footer>
+</html>

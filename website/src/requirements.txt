@@ -1,0 +1,18 @@
+flask
+Flask-SQLAlchemy
+flask-login # Potentially take out
+Flask-Jsonpify==1.5.0
+pandas
+pendulum
+numpy
+#argon2-cffi
+# General Install
+#pendulum==2.1.2
+#pandas==1.1.4
+xlrd==1.2.0
+requests==2.25.1
+# Azure Installs
+# azure-storage-blob==12.6.0
+# azure-mgmt-resource==15.0.0
+# azure.mgmt.datafactory==0.13.0
+# azure-common==1.1.25

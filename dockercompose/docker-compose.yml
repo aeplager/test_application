@@ -1,0 +1,23 @@
+version: "3.4"
+services:  
+  vrdwebsite: #docker run -it -v ${PWD}:/work -w /work -p 5003:5000 aimvector/python:1.0.0 /bin/sh
+    container_name: vrdwebsite
+    image: quicksoftwaresolutions/vrdwebsite:2.0.0
+    environment:
+      - maintest=TESTFROMCOMPOSEFILE      
+      # QKSS Connection
+      #-  DBSVRConnectionString=DRIVER={ODBC Driver 17 for SQL Server};SERVER=qkssriskserver.database.windows.net,1433;DATABASE=Dev3;UID=qkss@admin@qkssriskserver;PWD=riskdesk#12      
+      # Big Data Energy Services Connection
+      - DBSVRConnectionString=DRIVER={ODBC Driver 17 for SQL Server};SERVER=bde-db-prod-07.cmv1nl5nsudc.us-east-1.rds.amazonaws.com;DATABASE=Bridgelink-App-DB;UID=bridgelink-db-rw;PWD=dollardollarVwRnymWJ}k9a6k      
+      #- DBSVRConnectionString=DRIVER={ODBC Driver 17 for SQL Server};SERVER=localhost;DATABASE=Dev3;UID=sa;PWD=G0gators
+      - super_user_user_name=vrd_super_user@vrdsoft.com
+      - super_user_pwd=vrd_qkss_12
+      # VRD Soft
+      - outgoing_email=vrd_soft@qkss.com      
+      - outgoing_pwd=vrd_soft#12  
+      # Sales
+      #"outgoing_email": "sales@qkss.com",
+      #"outgoing_pwd":  "karen#12@45",      
+    ports:
+      - 80:5000
+      - 5678:5678     

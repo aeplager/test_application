@@ -1,0 +1,29 @@
+version: "3.4"
+services:  
+  vrdwebsite: #docker run -it -v ${PWD}:/work -w /work -p 5003:5000 aimvector/python:1.0.0 /bin/sh
+    container_name: combocurve
+    image: combocurve:2.0.0
+    environment:
+      - maintest=TESTFROMCOMPOSEFILE      
+      # Local Connection - Docker Connection
+      - DBSVRConnectionString=DRIVER=ODBC Driver 17 for SQL Server;SERVER=host.docker.internal,1433;DATABASE=TestApplication;UID=SA;PWD=G0gators#124dollardollar;Encrypt=yes;TrustServerCertificate=yes
+      # Some Test Server
+      #- DBSVRConnectionString=DRIVER={ODBC Driver 17 for SQL Server};SERVER=Some Server,1433;DATABASE=Some Database;UID=SomeUID;PWD=SomePWD
+      - super_user_user_name=combocurve_user@combocurve.com
+      - super_user_pwd=combocurve_12
+      # OutGoing Email
+      - outgoing_email=BLAH
+      - outgoing_pwd=BLAH 
+    build:
+      context: ./website
+      target: prod
+    #working_dir: /work      #comment out for build.target:prod
+    #entrypoint: /bin/sh     #comment out for build.target:prod
+    #stdin_open: true        #comment out for build.target:prod
+    #tty: true            
+       #comment out for build.target:prod
+    volumes:
+    - ./website/src/:/work
+    ports:
+      - 5000:5000
+      - 5678:5678     
